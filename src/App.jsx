@@ -47,7 +47,14 @@ function App() {
 
       <div className={styles.list}>
         {todoList.map((task) => {
-          return <Task taskName={task.taskName} id={task.id} deleteTask={deleteTask} completeTask={completeTask} completed={task.isCompleted}/>
+          return (
+            <Task 
+              taskName={task.taskName} 
+              id={task.id} 
+              deleteTask={deleteTask} 
+              completeTask={completeTask} 
+              completed={task.isCompleted}
+            />)
         })}
       </div>
     </div>
