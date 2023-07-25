@@ -1,8 +1,8 @@
-import styles from './App.module.css';
+import styles from '../App.module.css';
 import { useState } from 'react';
-import { Task } from './components/Task';
+import { Task } from '../components/Task';
 
-function App() {
+function TodoApp() {
   const [todoList, setTodoList] = useState([]);
   const [newTask, setNewTask] = useState("");
 
@@ -61,4 +61,4 @@ function App() {
   )
 }
 
-export default App;
+export default TodoApp;

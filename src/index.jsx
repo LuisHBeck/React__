@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import App from './App';
+import TodoApp from './Apps/todoApp';
+import App from './Apps/App';
+import TellJoke from './Apps/Joke';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    // {/* <TodoApp /> */}
+    // {/* <App /> */}
+    <TellJoke/>
   </React.StrictMode>
 );
