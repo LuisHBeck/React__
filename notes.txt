@@ -1,0 +1,8 @@
+START NEW APP - 
+    yarn create vite --template react .
+
+INSTALL NODE_MODULES - 
+    yarn 
+
+RUN THE PROJECT SERVER -
+    yarn dev
