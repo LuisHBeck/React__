@@ -1,53 +1,65 @@
 import './App.css'
-import { User } from './components/User';
-import { Planet } from './components/Planet';
+import { useState } from 'react';
 
 function App() {
+  //  AGE
+  // const [age, setAge] = useState(0);
+  // const increaseAge = () => {
+  //   setAge(age + 1)
+  // }
 
-  const age = 19;
-  const isGreen = false;
+  //  TEXT AREA
+  // const [textArea, setTextArea] = useState('');
+  // const handleInputChange = (event) => {
+  //   setTextArea(event.target.value);
+  // }
 
-  const names = ['Peter', 'Jake', 'Mike', 'Dustin', 'Carl'];
+  // VISIBLE
+  // const [visible, setVisible] = useState(true);
 
-  const users = [
-    { name: 'Peter', age:25 },
-    { name: 'Jake', age:15 },
-    { name: 'Carl', age:19 }
-  ]
+  // TEXT COLOR
+  // const [textColor, setTextColor] = useState('green');
 
-  const planets = [
-    { name: 'Mars', isGasPlanet: false },
-    { name: 'Earth', isGasPlanet: false },
-    { name: 'Jupiter', isGasPlanet: true },
-    { name: 'Venus', isGasPlanet: false },
-    { name: 'Neptune', isGasPlanet: true },
-    { name: 'Uranus', isGasPlanet: true },
-  ]
+  // COUNT  
+  const [count, setCount] = useState(0)
 
   return (
     <div className="App">
-      {/*
-      <h2>{age >= 18 ? "Over age" : "Under age"}</h2>
-      <h1 style={{ color: isGreen ? "green" : "red" }}>THIS HAS COLOR</h1>
-      { isGreen && <button>Here</button> } */}
+      {/* AGE */}
+      {/* { age } <button onClick={ increaseAge }> Increase Age </button> */}
 
-      {/* {names.map((name, key) => {
-        return <h2 key={key}>{ name }</h2>;
-      })} */}
+      {/* TEXT AREA */}
+      {/* <input type="text" onChange={ handleInputChange }/>
+      { textArea } */}
 
-      {/* { users.map((user, key) => {
-        return (
-          <User name={user.name} age={user.age} />
-        )
-      }) } */}
+      {/* VISIBLE */}
+      {/* <button
+       onClick={() => {
+        setVisible(!visible)
+      }} > show/hide </button> */}
 
-      { planets.map((planet, key) => {
-        return (
-          planet.isGasPlanet ? <Planet name={planet.name}/> : ''
-        )
-      }
-      ) }
+      {/* TEXT COLOR */}
+      {/* <button 
+        onClick={() => {
+          // textColor == 'green'? setTextColor('black') : setTextColor('green'); 
+          setTextColor(textColor === 'red' ? 'green' : 'red')
+      }}> green / red </button> */}
 
+      {/* { visible && <h1 style={{ color: textColor }}>Hi, my name is Beck!</h1>} */}
+
+      <button onClick={() => {
+        setCount(count+1);
+      }}> Increase </button>
+
+      <button onClick={() => {
+        setCount(count-1);
+      }}> Decrease </button>
+
+      <button onClick={() => {
+        setCount(0)
+      }}> Set to Zero </button>
+
+      {count}
     </div>
   )
 }
