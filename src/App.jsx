@@ -1,4 +1,6 @@
 import './App.css'
+import { User } from './components/User';
+import { Planet } from './components/Planet';
 
 function App() {
 
@@ -13,6 +15,15 @@ function App() {
     { name: 'Carl', age:19 }
   ]
 
+  const planets = [
+    { name: 'Mars', isGasPlanet: false },
+    { name: 'Earth', isGasPlanet: false },
+    { name: 'Jupiter', isGasPlanet: true },
+    { name: 'Venus', isGasPlanet: false },
+    { name: 'Neptune', isGasPlanet: true },
+    { name: 'Uranus', isGasPlanet: true },
+  ]
+
   return (
     <div className="App">
       {/*
@@ -24,20 +35,19 @@ function App() {
         return <h2 key={key}>{ name }</h2>;
       })} */}
 
-      { users.map((user, key) => {
+      {/* { users.map((user, key) => {
         return (
           <User name={user.name} age={user.age} />
         )
-      }) }
+      }) } */}
 
-    </div>
-  )
-}
+      { planets.map((planet, key) => {
+        return (
+          planet.isGasPlanet ? <Planet name={planet.name}/> : ''
+        )
+      }
+      ) }
 
-const User = (props) => {
-  return (
-    <div>
-      <h1>{ props.name } { props.age }</h1>
     </div>
   )
 }
