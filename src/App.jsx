@@ -1,10 +1,12 @@
 import './App.css'
 import { useState } from 'react';
+import { Task } from './components/Task';
 
 function App() {
 
   const [todoList, setTodoList] = useState([]);
   const [task, setTask] = useState('');
+  const [fineshed, setFineshed] = useState(false)
 
   const getNewTask = (event) => {
     setTask(event.target.value);
@@ -13,14 +15,25 @@ function App() {
   const addNewTask = () => {
     const newTask = {
       id: todoList.length + 1,
-      taskName: task 
+      taskName: task,
+      isfinished: fineshed 
     }
     setTodoList([...todoList, newTask]);
     console.log(newTask.id)
   }
 
-  const removeTask = () => {
-    
+  const removeTask = (id) => {
+    setTodoList(todoList.filter((task) => {
+      return task.id !== id;
+    }))
+  }
+
+  const finishTask = (id) => {
+    setTodoList(
+      todoList.map((task) => {
+        task.id === id ? 
+      })
+    )
   }
 
   return (
@@ -32,11 +45,7 @@ function App() {
 
       { todoList.map((task) => {
         return (
-          <div>
-            <h1> { task.taskName } </h1>
-            <h2> { task.id } </h2>
-            <button onClick={ removeTask }> X </button>
-          </div>
+          <Task name={task.taskName} id={task.id} delete={removeTask}/>
         )
       }) }
     </div>
