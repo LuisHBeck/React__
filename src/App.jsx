@@ -2,64 +2,43 @@ import './App.css'
 import { useState } from 'react';
 
 function App() {
-  //  AGE
-  // const [age, setAge] = useState(0);
-  // const increaseAge = () => {
-  //   setAge(age + 1)
-  // }
 
-  //  TEXT AREA
-  // const [textArea, setTextArea] = useState('');
-  // const handleInputChange = (event) => {
-  //   setTextArea(event.target.value);
-  // }
+  const [todoList, setTodoList] = useState([]);
+  const [task, setTask] = useState('');
 
-  // VISIBLE
-  // const [visible, setVisible] = useState(true);
+  const getNewTask = (event) => {
+    setTask(event.target.value);
+  }
 
-  // TEXT COLOR
-  // const [textColor, setTextColor] = useState('green');
+  const addNewTask = () => {
+    const newTask = {
+      id: todoList.length + 1,
+      taskName: task 
+    }
+    setTodoList([...todoList, newTask]);
+    console.log(newTask.id)
+  }
 
-  // COUNT  
-  const [count, setCount] = useState(0)
+  const removeTask = () => {
+    
+  }
 
   return (
     <div className="App">
-      {/* AGE */}
-      {/* { age } <button onClick={ increaseAge }> Increase Age </button> */}
+      <div className='task'>
+        <input type="text" onChange={ getNewTask }/>
+        <button onClick={ addNewTask }> Add Task </button>
+      </div>
 
-      {/* TEXT AREA */}
-      {/* <input type="text" onChange={ handleInputChange }/>
-      { textArea } */}
-
-      {/* VISIBLE */}
-      {/* <button
-       onClick={() => {
-        setVisible(!visible)
-      }} > show/hide </button> */}
-
-      {/* TEXT COLOR */}
-      {/* <button 
-        onClick={() => {
-          // textColor == 'green'? setTextColor('black') : setTextColor('green'); 
-          setTextColor(textColor === 'red' ? 'green' : 'red')
-      }}> green / red </button> */}
-
-      {/* { visible && <h1 style={{ color: textColor }}>Hi, my name is Beck!</h1>} */}
-
-      <button onClick={() => {
-        setCount(count+1);
-      }}> Increase </button>
-
-      <button onClick={() => {
-        setCount(count-1);
-      }}> Decrease </button>
-
-      <button onClick={() => {
-        setCount(0)
-      }}> Set to Zero </button>
-
-      {count}
+      { todoList.map((task) => {
+        return (
+          <div>
+            <h1> { task.taskName } </h1>
+            <h2> { task.id } </h2>
+            <button onClick={ removeTask }> X </button>
+          </div>
+        )
+      }) }
     </div>
   )
 }
