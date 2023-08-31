@@ -6,7 +6,7 @@ function App() {
 
   const [todoList, setTodoList] = useState([]);
   const [task, setTask] = useState('');
-  const [fineshed, setFineshed] = useState(false)
+  // const [fineshed, setFineshed] = useState(false)
 
   const getNewTask = (event) => {
     setTask(event.target.value);
@@ -16,10 +16,9 @@ function App() {
     const newTask = {
       id: todoList.length + 1,
       taskName: task,
-      isfinished: fineshed 
+      isFinished: false 
     }
     setTodoList([...todoList, newTask]);
-    console.log(newTask.id)
   }
 
   const removeTask = (id) => {
@@ -31,10 +30,12 @@ function App() {
   const finishTask = (id) => {
     setTodoList(
       todoList.map((task) => {
-        task.id === id ? 
+        return task.id === id ? { ...task, isFinished:true } : task
       })
     )
   }
+
+  console.log(todoList)
 
   return (
     <div className="App">
@@ -45,7 +46,12 @@ function App() {
 
       { todoList.map((task) => {
         return (
-          <Task name={task.taskName} id={task.id} delete={removeTask}/>
+          <Task 
+            name={task.taskName} 
+            id={task.id} 
+            isFinished={task.isFinished}
+            delete={removeTask} 
+            finish={finishTask}/>
         )
       }) }
     </div>
