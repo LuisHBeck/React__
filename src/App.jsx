@@ -1,61 +1,43 @@
 import './App.css'
-import { useState } from 'react';
-import { Task } from './components/Task';
+import { useState, useEffect} from 'react';
+import Axios from 'axios';
+import { Excuse } from './components/Excuse';
 
 function App() {
 
-  const [todoList, setTodoList] = useState([]);
-  const [task, setTask] = useState('');
-  // const [fineshed, setFineshed] = useState(false)
+    const [excuse, setExcuse] = useState({});
 
-  const getNewTask = (event) => {
-    setTask(event.target.value);
-  }
-
-  const addNewTask = () => {
-    const newTask = {
-      id: todoList.length + 1,
-      taskName: task,
-      isFinished: false 
+    const fetchExcuse = async (excuseType) => {
+        try {
+            const response = await Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuseType}/`);
+            setExcuse(response.data[0]);
+        }catch (err) {
+            console.log(err)
+        } 
     }
-    setTodoList([...todoList, newTask]);
-  }
 
-  const removeTask = (id) => {
-    setTodoList(todoList.filter((task) => {
-      return task.id !== id;
-    }))
-  }
+    return (
+        <div className="App">
+            <h1> Generate an Excuse </h1>
 
-  const finishTask = (id) => {
-    setTodoList(
-      todoList.map((task) => {
-        return task.id === id ? { ...task, isFinished:true } : task
-      })
+            <button onClick={() => {
+                fetchExcuse('party');
+            }}> Party </button>
+
+            <button onClick={() => {
+                fetchExcuse('family')
+            }}> Family </button>
+
+            <button onClick={() => {
+                fetchExcuse('office')
+            }}> Office </button>
+
+            <Excuse 
+                category={excuse?.category}
+                excuse={excuse?.excuse}    
+            />
+        </div>
     )
-  }
-
-  console.log(todoList)
-
-  return (
-    <div className="App">
-      <div className='task'>
-        <input type="text" onChange={ getNewTask }/>
-        <button onClick={ addNewTask }> Add Task </button>
-      </div>
-
-      { todoList.map((task) => {
-        return (
-          <Task 
-            name={task.taskName} 
-            id={task.id} 
-            isFinished={task.isFinished}
-            delete={removeTask} 
-            finish={finishTask}/>
-        )
-      }) }
-    </div>
-  )
 }
 
-export default App
+export default App;
