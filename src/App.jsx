@@ -1,26 +1,28 @@
-import './App.css'
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { useState } from "react";
 
-import { Home } from './pages/home';
-import { Menu } from './pages/Menu';
-import { Contact } from './pages/Contact';
-import { Error } from './pages/Error';
-import { Navbar } from './components/Navbar';
+import { Home } from "./pages/home";
+import { Contact } from "./pages/Contact";
+import { Profile } from "./pages/Profile";
+import { Error } from "./pages/Error";
+import { Navbar } from "./components/Navbar";
 
 function App() {
-    return (
-        <div className='App'>
-            <Router>
-                <Navbar />
-                <Routes>
-                    <Route path='/' element={<Home />}/>
-                    <Route path='/menu' element={<Menu />}/>
-                    <Route path='/contact' element={<Contact />}/>
-                    <Route path='*' element={<Error />}/>
-                </Routes>
-            </Router>
-        </div> 
-    )
+	const [username, setUsername] = useState('BECK');
+	return (
+		<div className="App">
+			<Router>
+				<Navbar />
+				<Routes>
+					<Route path="/" element={<Home username={username}/>} />
+					<Route path="/profile" element={<Profile username={username} setUsername={setUsername}/>} />
+					<Route path="/contact" element={<Contact />} />
+					<Route path="*" element={<Error />} />
+				</Routes>
+			</Router>
+		</div>
+	);
 }
 
 export default App;
