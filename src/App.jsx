@@ -1,42 +1,25 @@
 import './App.css'
-import { useState, useEffect} from 'react';
-import Axios from 'axios';
-import { Excuse } from './components/Excuse';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+import { Home } from './pages/home';
+import { Menu } from './pages/Menu';
+import { Contact } from './pages/Contact';
+import { Error } from './pages/Error';
+import { Navbar } from './components/Navbar';
 
 function App() {
-
-    const [excuse, setExcuse] = useState({});
-
-    const fetchExcuse = async (excuseType) => {
-        try {
-            const response = await Axios.get(`https://excuser-three.vercel.app/v1/excuse/${excuseType}/`);
-            setExcuse(response.data[0]);
-        }catch (err) {
-            console.log(err)
-        } 
-    }
-
     return (
-        <div className="App">
-            <h1> Generate an Excuse </h1>
-
-            <button onClick={() => {
-                fetchExcuse('party');
-            }}> Party </button>
-
-            <button onClick={() => {
-                fetchExcuse('family')
-            }}> Family </button>
-
-            <button onClick={() => {
-                fetchExcuse('office')
-            }}> Office </button>
-
-            <Excuse 
-                category={excuse?.category}
-                excuse={excuse?.excuse}    
-            />
-        </div>
+        <div className='App'>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path='/' element={<Home />}/>
+                    <Route path='/menu' element={<Menu />}/>
+                    <Route path='/contact' element={<Contact />}/>
+                    <Route path='*' element={<Error />}/>
+                </Routes>
+            </Router>
+        </div> 
     )
 }
 
