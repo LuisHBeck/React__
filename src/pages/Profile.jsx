@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
+import { AppContext } from "../App";
 import { ChangeProfile } from "../components/ChangeProfile";
+import { useContext } from "react";
 
-export const Profile = (props) => {
+export const Profile = () => {
+	const { username } = useContext(AppContext);
 	return (
 		<div>
-			PROFILE: {props.username}{" "}
-			<ChangeProfile setUsername={props.setUsername} />
+			PROFILE: {username}{" "}
+			<ChangeProfile />
 		</div>
 	);
 };
